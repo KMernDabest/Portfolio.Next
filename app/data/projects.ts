@@ -1,0 +1,118 @@
+import type { Project } from "@/app/types";
+
+export const projects: Project[] = [
+  {
+    id: "ecommerce-platform",
+    title: "E-Commerce Platform",
+    summary: "A full-stack e-commerce solution with real-time inventory management",
+    description:
+      "Built a comprehensive e-commerce platform featuring real-time inventory tracking, secure payment processing, and an intuitive admin dashboard. The platform handles thousands of daily transactions with 99.9% uptime.",
+    features: [
+      "Real-time inventory management",
+      "Secure Stripe payment integration",
+      "Admin dashboard with analytics",
+      "Order tracking system",
+      "Customer review system",
+      "Multi-currency support",
+    ],
+    techStack: ["Next.js", "TypeScript", "PostgreSQL", "Stripe", "Redis", "Docker"],
+    image: "/projects/ecommerce.jpg",
+    github: "https://github.com/rithseyhak/ecommerce-platform",
+    liveDemo: "https://ecommerce-demo.vercel.app",
+    featured: true,
+  },
+  {
+    id: "ai-chat-assistant",
+    title: "AI Chat Assistant",
+    summary: "An intelligent chatbot powered by GPT with custom training capabilities",
+    description:
+      "Developed an AI-powered chat assistant that can be trained on custom datasets. Features include conversation memory, multi-language support, and seamless integration with existing applications via REST API.",
+    features: [
+      "Custom model fine-tuning",
+      "Conversation memory",
+      "Multi-language support",
+      "REST API integration",
+      "Real-time streaming responses",
+      "Usage analytics dashboard",
+    ],
+    techStack: ["Python", "FastAPI", "OpenAI", "React", "PostgreSQL", "Redis"],
+    image: "/projects/ai-chat.jpg",
+    github: "https://github.com/rithseyhak/ai-chat-assistant",
+    liveDemo: "https://ai-chat-demo.vercel.app",
+    featured: true,
+  },
+  {
+    id: "task-management",
+    title: "Task Management System",
+    summary: "A collaborative project management tool with real-time updates",
+    description:
+      "Created a Kanban-style task management application with real-time collaboration features. Teams can organize projects, assign tasks, track progress, and communicate effectively within the platform.",
+    features: [
+      "Drag-and-drop Kanban boards",
+      "Real-time collaboration",
+      "Team chat integration",
+      "File attachments",
+      "Time tracking",
+      "Custom workflows",
+    ],
+    techStack: ["React", "Node.js", "Socket.io", "MongoDB", "AWS S3", "Docker"],
+    image: "/projects/task-mgmt.jpg",
+    github: "https://github.com/rithseyhak/task-management",
+    featured: true,
+  },
+  {
+    id: "crypto-dashboard",
+    title: "Crypto Portfolio Tracker",
+    summary: "Real-time cryptocurrency portfolio tracking and analytics",
+    description:
+      "A comprehensive dashboard for tracking cryptocurrency investments with real-time price updates, portfolio analytics, and market insights. Features include multi-wallet support and tax reporting.",
+    features: [
+      "Real-time price tracking",
+      "Portfolio analytics",
+      "Multi-wallet support",
+      "Tax reporting tools",
+      "Price alerts",
+      "Historical data charts",
+    ],
+    techStack: ["Next.js", "TypeScript", "WebSocket", "Chart.js", "CoinGecko API"],
+    image: "/projects/crypto.jpg",
+    github: "https://github.com/rithseyhak/crypto-dashboard",
+    liveDemo: "https://crypto-tracker-demo.vercel.app",
+  },
+  {
+    id: "health-fitness-app",
+    title: "Health & Fitness App",
+    summary: "A cross-platform mobile app for fitness tracking and meal planning",
+    description:
+      "Built a comprehensive health and fitness application with workout tracking, meal planning, progress monitoring, and social features for community motivation.",
+    features: [
+      "Workout tracking & plans",
+      "Meal planning & nutrition",
+      "Progress photos & stats",
+      "Social challenges",
+      "Apple Health integration",
+      "Offline support",
+    ],
+    techStack: ["Flutter", "Dart", "Firebase", "Node.js", "MongoDB"],
+    image: "/projects/fitness.jpg",
+    github: "https://github.com/rithseyhak/fitness-app",
+  },
+  {
+    id: "devops-pipeline",
+    title: "CI/CD Pipeline Toolkit",
+    summary: "Automated DevOps pipeline with monitoring and deployment automation",
+    description:
+      "Developed a comprehensive CI/CD toolkit that automates testing, building, and deploying applications across multiple environments with integrated monitoring and rollback capabilities.",
+    features: [
+      "Automated testing",
+      "Multi-environment deployment",
+      "Rollback capabilities",
+      "Performance monitoring",
+      "Slack notifications",
+      "Docker orchestration",
+    ],
+    techStack: ["GitHub Actions", "Docker", "Kubernetes", "Terraform", "Prometheus"],
+    image: "/projects/devops.jpg",
+    github: "https://github.com/rithseyhak/devops-toolkit",
+  },
+];
