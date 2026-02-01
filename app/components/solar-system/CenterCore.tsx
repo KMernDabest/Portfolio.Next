@@ -70,7 +70,8 @@ export default function CenterCore({ isPaused, onToggle }: CenterCoreProps) {
         <div
           className="absolute inset-0 rounded-full"
           style={{
-            background: "linear-gradient(90deg, #1a1a2e 50%, transparent 50%)",
+            background: "#1a1a2e",
+            clipPath: "inset(0 50% 0 0)",
           }}
         />
         
@@ -94,7 +95,7 @@ export default function CenterCore({ isPaused, onToggle }: CenterCoreProps) {
         <motion.div
           className="absolute inset-0 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"
           style={{
-            background: "radial-gradient(circle, rgba(255,255,255,0.2) 0%, transparent 70%)",
+            backgroundColor: "rgba(255,255,255,0.1)",
           }}
         />
       </motion.button>

@@ -84,7 +84,7 @@ export default function Navbar() {
             <motion.a
               href="#home"
               onClick={(e) => handleNavClick(e, "#home")}
-              className="text-xl font-bold bg-gradient-to-r from-cyan-400 to-purple-500 bg-clip-text text-transparent"
+              className="text-xl font-bold text-cyan-400"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
@@ -121,7 +121,7 @@ export default function Navbar() {
             <motion.a
               href="#contact"
               onClick={(e) => handleNavClick(e, "#contact")}
-              className="hidden md:block px-5 py-2 bg-gradient-to-r from-cyan-500 to-purple-600 rounded-full text-sm font-medium text-white hover:opacity-90 transition-opacity"
+              className="hidden md:block px-5 py-2 bg-cyan-500 rounded-full text-sm font-medium text-white hover:bg-cyan-600 transition-colors"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
@@ -211,7 +211,7 @@ export default function Navbar() {
                   initial={{ opacity: 0, x: 20 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: navLinks.length * 0.05 }}
-                  className="mt-4 px-4 py-3 bg-gradient-to-r from-cyan-500 to-purple-600 rounded-lg text-lg font-medium text-white text-center"
+                  className="mt-4 px-4 py-3 bg-cyan-500 rounded-lg text-lg font-medium text-white text-center hover:bg-cyan-600 transition-colors"
                 >
                   Let&apos;s Talk
                 </motion.a>

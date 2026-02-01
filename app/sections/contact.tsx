@@ -44,7 +44,7 @@ export default function Contact() {
     >
       {/* Background elements */}
       <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-cyan-500/50 to-transparent" />
+        <div className="absolute bottom-0 left-0 right-0 h-px bg-cyan-500/30" />
         <div className="absolute top-1/4 -right-48 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl" />
         <div className="absolute bottom-1/4 -left-48 w-96 h-96 bg-cyan-500/10 rounded-full blur-3xl" />
       </div>
@@ -131,7 +131,7 @@ export default function Contact() {
                   transition={{ duration: 0.5, delay: 0.3 + index * 0.1 }}
                   className="flex items-center gap-4 p-4 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 hover:border-white/20 transition-all group"
                 >
-                  <div className="p-3 rounded-lg bg-gradient-to-br from-cyan-500/20 to-purple-500/20 text-cyan-400 group-hover:text-cyan-300 transition-colors">
+                  <div className="p-3 rounded-lg bg-cyan-500/20 text-cyan-400 group-hover:text-cyan-300 transition-colors">
                     {contact.icon}
                   </div>
                   <div>
@@ -235,7 +235,7 @@ export default function Contact() {
                 <motion.button
                   type="submit"
                   disabled={isSubmitting}
-                  className="w-full py-4 px-6 rounded-xl bg-gradient-to-r from-cyan-500 to-purple-600 text-white font-medium text-lg shadow-lg shadow-cyan-500/25 hover:shadow-cyan-500/40 transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+                  className="w-full py-4 px-6 rounded-xl bg-cyan-500 text-white font-medium text-lg shadow-lg shadow-cyan-500/25 hover:shadow-cyan-500/40 hover:bg-cyan-600 transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
                   whileHover={{ scale: isSubmitting ? 1 : 1.02 }}
                   whileTap={{ scale: isSubmitting ? 1 : 0.98 }}
                 >

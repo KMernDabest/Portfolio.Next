@@ -1,19 +1,18 @@
 "use client";
 
-import { useRef } from "react";
-import { motion, useInView } from "framer-motion";
+import { useRef, useState } from "react";
+import { motion, useInView, AnimatePresence } from "framer-motion";
 
 const images = [
   { id: 1, src: "/about/coding.jpg", alt: "Coding session" },
   { id: 2, src: "/about/conference.jpg", alt: "Tech conference" },
   { id: 3, src: "/about/team.jpg", alt: "Team collaboration" },
-  { id: 4, src: "/about/workspace.jpg", alt: "Modern workspace" },
 ];
 
 export default function About() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
-  const galleryRef = useRef<HTMLDivElement>(null);
+  const [activeIndex, setActiveIndex] = useState(1); // Middle card is active by default
 
   return (
     <section
@@ -21,8 +20,8 @@ export default function About() {
       ref={ref}
       className="relative py-24 md:py-32"
     >
-      {/* Background gradient */}
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-slate-900/50 to-transparent" />
+      {/* Background overlay */}
+      <div className="absolute inset-0 bg-slate-900/30" />
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
@@ -86,7 +85,7 @@ export default function About() {
                   transition={{ duration: 0.5, delay: 0.4 + index * 0.1 }}
                   className="text-center"
                 >
-                  <div className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-cyan-400 to-purple-500 bg-clip-text text-transparent">
+                  <div className="text-3xl md:text-4xl font-bold text-cyan-400">
                     {stat.value}
                   </div>
                   <div className="mt-1 text-sm text-slate-400">{stat.label}</div>
@@ -126,67 +125,97 @@ export default function About() {
             </motion.div>
           </motion.div>
 
-          {/* Right Column - Image Gallery */}
+          {/* Right Column - Stacked Photo Collage */}
           <motion.div
             initial={{ opacity: 0, x: 30 }}
             animate={isInView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.3 }}
-            className="relative"
+            className="relative flex items-start justify-center pt-4"
           >
-            {/* Draggable Gallery */}
-            <div
-              ref={galleryRef}
-              className="flex gap-4 overflow-x-auto pb-4 snap-x snap-mandatory scrollbar-hide cursor-grab active:cursor-grabbing"
-              style={{
-                scrollbarWidth: "none",
-                msOverflowStyle: "none",
-              }}
-            >
-              {images.map((image, index) => (
-                <motion.div
-                  key={image.id}
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  animate={isInView ? { opacity: 1, scale: 1 } : {}}
-                  transition={{ duration: 0.5, delay: 0.4 + index * 0.1 }}
-                  className="flex-shrink-0 w-64 h-80 snap-center"
-                >
-                  <div className="relative w-full h-full rounded-2xl overflow-hidden border border-white/10 bg-slate-800">
-                    {/* Placeholder gradient for demo */}
-                    <div
-                      className="absolute inset-0"
-                      style={{
-                        background: `linear-gradient(135deg, 
-                          hsl(${180 + index * 30}, 70%, 20%) 0%, 
-                          hsl(${200 + index * 30}, 70%, 10%) 100%)`,
-                      }}
-                    />
-                    <div className="absolute inset-0 flex items-center justify-center">
-                      <span className="text-4xl">
-                        {["💻", "🎤", "👥", "🏢"][index]}
-                      </span>
+            {/* Stacked Cards Container */}
+            <div className="relative w-80 h-96 md:w-96 md:h-[420px]">
+              {images.map((image, index) => {
+                // Calculate position based on index relative to active
+                const position = index - activeIndex;
+                
+                // Card configurations for stacked effect - increased x offset for more spread
+                const configs = [
+                  { rotate: -18, x: -100, scale: 0.85, zIndex: 1 }, // Left card
+                  { rotate: 0, x: 0, scale: 1, zIndex: 3 },         // Center card (active)
+                  { rotate: 18, x: 100, scale: 0.85, zIndex: 1 },   // Right card
+                ];
+                
+                // Get config based on position
+                let config;
+                if (position === -1 || (activeIndex === 0 && index === images.length - 1)) {
+                  config = configs[0]; // Left
+                } else if (position === 0) {
+                  config = configs[1]; // Center
+                } else if (position === 1 || (activeIndex === images.length - 1 && index === 0)) {
+                  config = configs[2]; // Right
+                } else {
+                  config = { rotate: 0, x: 0, scale: 0.8, zIndex: 0 }; // Hidden
+                }
+
+                return (
+                  <motion.div
+                    key={image.id}
+                    initial={{ opacity: 0, scale: 0.8 }}
+                    animate={isInView ? { 
+                      opacity: 1, 
+                      scale: config.scale,
+                      rotate: config.rotate,
+                      x: config.x,
+                      zIndex: config.zIndex,
+                    } : {}}
+                    transition={{ 
+                      duration: 0.5, 
+                      delay: 0.4 + index * 0.1,
+                      type: "spring",
+                      stiffness: 300,
+                      damping: 25
+                    }}
+                    onClick={() => setActiveIndex(index)}
+                    className="absolute inset-0 cursor-pointer"
+                    style={{ zIndex: config.zIndex }}
+                  >
+                    <div className="relative w-full h-full rounded-3xl overflow-hidden border-2 border-white/20 bg-slate-800 shadow-2xl">
+                      {/* Placeholder image with color */}
+                      <div
+                        className="absolute inset-0"
+                        style={{
+                          backgroundColor: `hsl(${200 + index * 40}, 60%, 25%)`,
+                        }}
+                      />
+                      {/* Placeholder for actual image */}
+                      <div className="absolute inset-0 flex items-center justify-center">
+                        <span className="text-6xl">
+                          {["💻", "🎤", "👥"][index]}
+                        </span>
+                      </div>
+                      {/* Subtle overlay for depth */}
+                      <div className="absolute inset-0 bg-black/10" />
                     </div>
-                    {/* Overlay */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 to-transparent" />
-                    <div className="absolute bottom-4 left-4 right-4">
-                      <p className="text-sm text-slate-300">{image.alt}</p>
-                    </div>
-                  </div>
-                </motion.div>
-              ))}
+                  </motion.div>
+                );
+              })}
             </div>
 
-            {/* Scroll hint */}
-            <div className="flex justify-center mt-4 gap-2">
+            {/* Navigation dots */}
+            <div className="absolute -bottom-8 left-1/2 -translate-x-1/2 flex gap-3">
               {images.map((_, index) => (
-                <div
+                <button
                   key={index}
-                  className="w-2 h-2 rounded-full bg-white/20"
+                  onClick={() => setActiveIndex(index)}
+                  className={`w-2 h-2 rounded-full transition-all duration-300 ${
+                    index === activeIndex 
+                      ? "bg-cyan-400 w-6" 
+                      : "bg-white/30 hover:bg-white/50"
+                  }`}
+                  aria-label={`View image ${index + 1}`}
                 />
               ))}
             </div>
-            <p className="text-center text-xs text-slate-500 mt-2">
-              ← Swipe to explore →
-            </p>
           </motion.div>
         </div>
       </div>

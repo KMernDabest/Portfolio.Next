@@ -33,9 +33,12 @@ export default function Planet({
       <div
         className="relative w-full h-full"
         style={{
-          animation: `spin ${speed}s linear infinite ${animationDirection}`,
+          animationName: `spin-${planet.id}`,
+          animationDuration: `${speed}s`,
+          animationTimingFunction: "linear",
+          animationIterationCount: "infinite",
+          animationDirection: animationDirection,
           animationPlayState: shouldPause ? "paused" : "running",
-          transform: `rotate(${initialAngle}deg)`,
         }}
       >
         {/* Planet positioned at top of orbit ring */}
@@ -67,7 +70,11 @@ export default function Planet({
           <div
             className="flex items-center justify-center"
             style={{
-              animation: `spin ${speed}s linear infinite ${direction === "clockwise" ? "reverse" : "normal"}`,
+              animationName: `spin-counter-${planet.id}`,
+              animationDuration: `${speed}s`,
+              animationTimingFunction: "linear",
+              animationIterationCount: "infinite",
+              animationDirection: direction === "clockwise" ? "reverse" : "normal",
               animationPlayState: shouldPause ? "paused" : "running",
               color: color,
               width: size * 0.5,
@@ -80,12 +87,20 @@ export default function Planet({
       </div>
 
       <style jsx>{`
-        @keyframes spin {
+        @keyframes spin-${planet.id} {
           from {
-            transform: rotate(0deg);
+            transform: rotate(${initialAngle}deg);
           }
           to {
-            transform: rotate(360deg);
+            transform: rotate(${initialAngle + 360}deg);
+          }
+        }
+        @keyframes spin-counter-${planet.id} {
+          from {
+            transform: rotate(${-initialAngle}deg);
+          }
+          to {
+            transform: rotate(${-initialAngle - 360}deg);
           }
         }
       `}</style>

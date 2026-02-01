@@ -29,7 +29,7 @@ export default function Hero() {
             {/* Main Heading */}
             <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-4">
               <span className="text-white">Hi, I&apos;m </span>
-              <span className="bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-500 bg-clip-text text-transparent">
+              <span className="text-cyan-400">
                 Rith Seyhak
               </span>
             </h1>
@@ -51,7 +51,7 @@ export default function Hero() {
             <div className="flex flex-col sm:flex-row items-center lg:items-start gap-4">
               <motion.button
                 onClick={scrollToPortfolio}
-                className="px-8 py-4 bg-gradient-to-r from-cyan-500 to-purple-600 rounded-full text-white font-medium text-lg shadow-lg shadow-cyan-500/25 hover:shadow-cyan-500/40 transition-shadow"
+                className="px-8 py-4 bg-cyan-500 rounded-full text-white font-medium text-lg shadow-lg shadow-cyan-500/25 hover:shadow-cyan-500/40 hover:bg-cyan-600 transition-all"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >

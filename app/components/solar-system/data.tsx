@@ -10,12 +10,15 @@ import {
   DockerIcon,
   GitIcon,
   TailwindIcon,
+  FigmaIcon,
+  MongoDBIcon,
 } from "./icons/TechIcons";
 
 /**
  * Technology stack data configuration
  * Each planet represents a technology with unique orbit parameters
- * 4 orbit layers with one planet each, all orbiting counter-clockwise
+ * 4 orbit layers with two planets each, all orbiting counter-clockwise
+ * Planets on the same orbit spawn at different positions (offset by 180 degrees)
  */
 export const TECH_PLANETS: PlanetData[] = [
   // Orbit 1 - Innermost (radius: 120)
@@ -31,6 +34,18 @@ export const TECH_PLANETS: PlanetData[] = [
     size: 64,
     initialAngle: 0,
   },
+  {
+    id: "postgresql",
+    name: "PostgreSQL",
+    description: "Relational Database",
+    color: "#4169E1",
+    icon: <PostgreSQLIcon className="w-full h-full" />,
+    orbitRadius: 120,
+    speed: 20,
+    direction: "counter-clockwise",
+    size: 64,
+    initialAngle: 180,
+  },
   // Orbit 2 (radius: 220)
   {
     id: "typescript",
@@ -42,7 +57,19 @@ export const TECH_PLANETS: PlanetData[] = [
     speed: 30,
     direction: "counter-clockwise",
     size: 64,
-    initialAngle: 90,
+    initialAngle: 45,
+  },
+  {
+    id: "figma",
+    name: "Figma",
+    description: "Design Tool",
+    color: "#F24E1E",
+    icon: <FigmaIcon className="w-full h-full" />,
+    orbitRadius: 220,
+    speed: 30,
+    direction: "counter-clockwise",
+    size: 64,
+    initialAngle: 225,
   },
   // Orbit 3 (radius: 320)
   {
@@ -55,7 +82,19 @@ export const TECH_PLANETS: PlanetData[] = [
     speed: 45,
     direction: "counter-clockwise",
     size: 64,
-    initialAngle: 180,
+    initialAngle: 90,
+  },
+  {
+    id: "javascript",
+    name: "JavaScript",
+    description: "Programming Language",
+    color: "#F7DF1E",
+    icon: <JavaScriptIcon className="w-full h-full" />,
+    orbitRadius: 320,
+    speed: 45,
+    direction: "counter-clockwise",
+    size: 64,
+    initialAngle: 270,
   },
   // Orbit 4 - Outermost (radius: 420)
   {
@@ -68,6 +107,18 @@ export const TECH_PLANETS: PlanetData[] = [
     speed: 60,
     direction: "counter-clockwise",
     size: 64,
-    initialAngle: 270,
+    initialAngle: 135,
+  },
+  {
+    id: "mongodb",
+    name: "MongoDB",
+    description: "NoSQL Database",
+    color: "#47A248",
+    icon: <MongoDBIcon className="w-full h-full" />,
+    orbitRadius: 420,
+    speed: 60,
+    direction: "counter-clockwise",
+    size: 64,
+    initialAngle: 315,
   },
 ];

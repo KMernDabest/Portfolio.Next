@@ -16,8 +16,8 @@ export default function Portfolio() {
       ref={ref}
       className="relative py-24 md:py-32"
     >
-      {/* Background gradient */}
-      <div className="absolute inset-0 bg-gradient-to-b from-slate-900/50 via-transparent to-slate-900/50" />
+      {/* Background overlay */}
+      <div className="absolute inset-0 bg-slate-900/30" />
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
@@ -77,14 +77,14 @@ function ProjectCard({
   isInView: boolean;
   onClick: () => void;
 }) {
-  // Generate gradient based on index
-  const gradients = [
-    "from-cyan-600/20 to-blue-600/20",
-    "from-purple-600/20 to-pink-600/20",
-    "from-green-600/20 to-emerald-600/20",
-    "from-orange-600/20 to-red-600/20",
-    "from-indigo-600/20 to-violet-600/20",
-    "from-teal-600/20 to-cyan-600/20",
+  // Plain colors based on index
+  const plainColors = [
+    "bg-cyan-600/20",
+    "bg-purple-600/20",
+    "bg-green-600/20",
+    "bg-orange-600/20",
+    "bg-indigo-600/20",
+    "bg-teal-600/20",
   ];
 
   return (
@@ -98,14 +98,14 @@ function ProjectCard({
       <div className="relative h-full p-6 rounded-2xl border border-white/10 bg-slate-900/50 backdrop-blur-sm hover:border-white/20 transition-all duration-300 hover:-translate-y-2">
         {/* Featured badge */}
         {project.featured && (
-          <div className="absolute top-4 right-4 px-2 py-1 bg-gradient-to-r from-cyan-500 to-purple-500 rounded-full text-xs font-medium text-white">
+          <div className="absolute top-4 right-4 px-2 py-1 bg-cyan-500 rounded-full text-xs font-medium text-white">
             Featured
           </div>
         )}
 
         {/* Image placeholder */}
         <div
-          className={`h-40 rounded-xl mb-6 bg-gradient-to-br ${gradients[index % gradients.length]} flex items-center justify-center overflow-hidden`}
+          className={`h-40 rounded-xl mb-6 ${plainColors[index % plainColors.length]} flex items-center justify-center overflow-hidden`}
         >
           <span className="text-5xl opacity-50">
             {["🛒", "🤖", "📋", "📊", "💪", "⚙️"][index % 6]}
@@ -204,7 +204,7 @@ function ProjectModal({
         </button>
 
         {/* Header image */}
-        <div className="h-48 bg-gradient-to-br from-cyan-600/30 to-purple-600/30 flex items-center justify-center">
+        <div className="h-48 bg-cyan-600/20 flex items-center justify-center">
           <span className="text-7xl opacity-50">
             {project.title.includes("Commerce")
               ? "🛒"
@@ -296,7 +296,7 @@ function ProjectModal({
                 href={project.liveDemo}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-5 py-2.5 bg-gradient-to-r from-cyan-500 to-purple-600 rounded-full text-white font-medium hover:opacity-90 transition-opacity"
+                className="inline-flex items-center gap-2 px-5 py-2.5 bg-cyan-500 rounded-full text-white font-medium hover:bg-cyan-600 transition-colors"
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
               >

@@ -42,8 +42,8 @@ export default function Footer() {
 
   return (
     <footer className="relative z-10 border-t border-white/10 backdrop-blur-sm bg-slate-950/30">
-      {/* Gradient divider */}
-      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-cyan-500/50 to-transparent" />
+      {/* Divider */}
+      <div className="absolute top-0 left-0 right-0 h-px bg-cyan-500/30" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="flex flex-col md:flex-row items-center justify-between gap-6">
@@ -51,7 +51,7 @@ export default function Footer() {
           <div className="text-center md:text-left">
             <motion.a
               href="#home"
-              className="text-xl font-bold bg-gradient-to-r from-cyan-400 to-purple-500 bg-clip-text text-transparent"
+              className="text-xl font-bold text-cyan-400"
               whileHover={{ scale: 1.05 }}
             >
               Rith Seyhak

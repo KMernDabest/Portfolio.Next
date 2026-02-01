@@ -35,7 +35,7 @@ export default function Skills() {
     >
       {/* Background */}
       <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gradient-radial from-cyan-500/10 to-transparent rounded-full blur-3xl" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-cyan-500/5 rounded-full blur-3xl" />
       </div>
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -69,7 +69,7 @@ export default function Skills() {
             onClick={() => setActiveCategory("all")}
             className={`px-4 py-2 rounded-full text-sm font-medium transition-all ${
               activeCategory === "all"
-                ? "bg-gradient-to-r from-cyan-500 to-purple-600 text-white"
+                ? "bg-cyan-500 text-white"
                 : "bg-white/5 text-slate-400 hover:text-white hover:bg-white/10 border border-white/10"
             }`}
           >
@@ -81,7 +81,7 @@ export default function Skills() {
               onClick={() => setActiveCategory(category.id)}
               className={`px-4 py-2 rounded-full text-sm font-medium transition-all flex items-center gap-2 ${
                 activeCategory === category.id
-                  ? "bg-gradient-to-r from-cyan-500 to-purple-600 text-white"
+                  ? "bg-cyan-500 text-white"
                   : "bg-white/5 text-slate-400 hover:text-white hover:bg-white/10 border border-white/10"
               }`}
             >

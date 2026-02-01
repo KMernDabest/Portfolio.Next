@@ -8,12 +8,26 @@ interface InfoPanelProps {
   onClose: () => void;
 }
 
+// Tool-specific descriptions
+const toolDescriptions: Record<string, string> = {
+  react: "A JavaScript library for building user interfaces with a component-based architecture. Perfect for creating interactive, dynamic web applications with reusable UI components.",
+  postgresql: "A powerful open-source relational database system known for reliability, data integrity, and extensibility. Ideal for complex queries and large-scale applications.",
+  typescript: "A strongly typed superset of JavaScript that adds static type definitions. Helps catch errors early and improves code maintainability in large codebases.",
+  figma: "A collaborative interface design tool used for UI/UX design, prototyping, and design systems. Enables seamless collaboration between designers and developers.",
+  git: "A distributed version control system for tracking changes in source code. Essential for collaboration, branching strategies, and maintaining code history.",
+  javascript: "The core programming language of the web. Used for creating dynamic, interactive experiences on both client and server side with Node.js.",
+  flutter: "Google's UI toolkit for building natively compiled applications for mobile, web, and desktop from a single codebase using Dart.",
+  mongodb: "A document-oriented NoSQL database designed for scalability and flexibility. Great for handling unstructured data and rapid development cycles.",
+};
+
 /**
  * Information panel that appears when a planet is selected
  * Displays technology details with a glassmorphism design
  */
 export default function InfoPanel({ planet, onClose }: InfoPanelProps) {
-  const { name, description, color, icon } = planet;
+  const { name, description, color, icon, id } = planet;
+  
+  const toolInfo = toolDescriptions[id] || `A powerful tool in modern development workflows.`;
 
   return (
     <motion.div
@@ -60,29 +74,8 @@ export default function InfoPanel({ planet, onClose }: InfoPanelProps) {
 
         {/* Description text */}
         <p className="text-slate-300 text-sm leading-relaxed mb-4">
-          An integral part of my development ecosystem. I leverage{" "}
-          <span className="font-semibold" style={{ color }}>
-            {name}
-          </span>{" "}
-          to build scalable, high-performance applications with modern best practices.
+          {toolInfo}
         </p>
-
-        {/* Skill indicators */}
-        <div className="flex gap-2 mb-4">
-          {["Proficient", "Production", "3+ Years"].map((tag) => (
-            <span
-              key={tag}
-              className="px-2 py-1 text-xs rounded-full border"
-              style={{
-                borderColor: `${color}40`,
-                color: `${color}cc`,
-                backgroundColor: `${color}10`,
-              }}
-            >
-              {tag}
-            </span>
-          ))}
-        </div>
 
         {/* Close button */}
         <button
@@ -94,16 +87,8 @@ export default function InfoPanel({ planet, onClose }: InfoPanelProps) {
             border: `1px solid ${color}30`,
           }}
         >
-          Close Interaction
+          Close
         </button>
-
-        {/* Decorative corner accent */}
-        <div
-          className="absolute top-0 right-0 w-20 h-20 rounded-tr-2xl opacity-20"
-          style={{
-            background: `radial-gradient(circle at top right, ${color}, transparent 70%)`,
-          }}
-        />
       </div>
     </motion.div>
   );
