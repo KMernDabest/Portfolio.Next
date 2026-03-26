@@ -1,36 +1,69 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Rith Seyhak — Portfolio
+
+Personal portfolio website built with Next.js 16, TypeScript, Tailwind CSS v4, and Framer Motion. Features smooth scroll animations, a responsive layout, an interactive photo card stack, and a working contact form powered by EmailJS.
+
+## Tech Stack
+
+- **Framework** — Next.js 16 (App Router)
+- **Language** — TypeScript
+- **Styling** — Tailwind CSS v4
+- **Animations** — Framer Motion
+- **Email** — EmailJS
+- **Deployment** — Vercel
+
+## Sections
+
+| Section    | Description                                                      |
+| ---------- | ---------------------------------------------------------------- |
+| Hero       | Introduction with GitHub and LinkedIn links                      |
+| About      | Bio, interests, and an auto-cycling interactive photo card stack |
+| Skills     | Icon grid — frontend, backend, database, and tools               |
+| Projects   | Modula POS, Melodia, FrostGuard, Portfolio Website               |
+| Experience | Education at Cambodia Academy of Digital Technology              |
+| Contact    | Contact form that sends directly to email via EmailJS            |
 
 ## Getting Started
 
-First, run the development server:
+```bash
+npm install
+```
+
+Create a `.env.local` file in the project root:
+
+```env
+NEXT_PUBLIC_EMAILJS_SERVICE_ID=your_service_id
+NEXT_PUBLIC_EMAILJS_TEMPLATE_ID=your_template_id
+NEXT_PUBLIC_EMAILJS_PUBLIC_KEY=your_public_key
+```
+
+> See the [EmailJS website](https://www.emailjs.com) to get your credentials.
+
+Then run the development server:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Project Structure
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```text
+app/
+├── data/          # All content — projects, skills, experience, about text
+├── lib/           # Icons and skill icon map
+├── sections/      # Page sections (Hero, About, Skills, Projects, Experience, Contact, Footer)
+├── types/         # TypeScript types
+├── layout.tsx     # Root layout with header and nav
+├── page.tsx       # Main page — composes all sections
+└── globals.css    # Global styles
+public/
+├── files/         # Resume PDF
+└── photos/        # Project screenshots and personal photos
+```
 
-## Learn More
+## Contact
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- **Email** — seyhakrithwk@gmail.com
+- **GitHub** — [KMernDabest](https://github.com/KMernDabest)
+- **LinkedIn** — [seyhak-rith-wk](https://www.linkedin.com/in/seyhak-rith-wk)
