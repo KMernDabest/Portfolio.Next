@@ -44,6 +44,8 @@ export const skills: Skill[] = [
   { name: "PostgreSQL", icon: "postgresql", color: "#4169e1", category: "database" },
   { name: "MySQL", icon: "mysql", color: "#4479a1", category: "database" },
   // Tools
+  { name: "Unity", icon: "unity", color: "#000000", category: "tools" },
+  { name: "C#", icon: "csharp", color: "#9B4F96", category: "tools" },
   { name: "Git", icon: "git", color: "#f05032", category: "tools" },
   { name: "Docker", icon: "docker", color: "#2496ed", category: "tools" },
   { name: "Firebase", icon: "firebase", color: "#ffca28", category: "tools" },

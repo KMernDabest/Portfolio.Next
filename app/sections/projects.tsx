@@ -55,16 +55,20 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
                 className="inline-flex items-center gap-1.5 text-xs font-medium px-2.5 py-1 bg-surface text-text-secondary rounded-md border border-border"
               >
                 {icon && (
-                  <svg
-                    width={13}
-                    height={13}
-                    viewBox={icon.viewBox ?? "0 0 24 24"}
-                    fill={`#${icon.hex}`}
-                    className="shrink-0"
-                    aria-hidden
-                  >
-                    <path d={icon.path} />
-                  </svg>
+                  "src" in icon ? (
+                    <img src={icon.src} width={13} height={13} className="shrink-0" alt="" aria-hidden />
+                  ) : (
+                    <svg
+                      width={13}
+                      height={13}
+                      viewBox={icon.viewBox ?? "0 0 24 24"}
+                      fill={`#${icon.hex}`}
+                      className="shrink-0"
+                      aria-hidden
+                    >
+                      <path d={icon.path} />
+                    </svg>
+                  )
                 )}
                 {tech}
               </span>

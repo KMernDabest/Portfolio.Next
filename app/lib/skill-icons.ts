@@ -25,8 +25,14 @@ import {
   siUnity,
 } from "simple-icons";
 
+export type SkillIcon =
+  | { path: string; hex: string; viewBox?: string }
+  | { src: string };
+
 // Custom SVG paths for icons not available in simple-icons
-const customIcons: Record<string, { path: string; hex: string; viewBox?: string }> = {
+const customIcons: Record<string, SkillIcon> = {
+  // C# — uses the full SVG file (multi-color, can't be a single path)
+  "C#": { src: "/csharp.svg" },
   // Java coffee cup — the classic Java logo
   Java: {
     hex: "ED8B00",
@@ -35,7 +41,7 @@ const customIcons: Record<string, { path: string; hex: string; viewBox?: string 
   },
 };
 
-export const skillIconMap: Record<string, { path: string; hex: string; viewBox?: string }> = {
+export const skillIconMap: Record<string, SkillIcon> = {
   ...customIcons,
   Dart:         { path: siDart.path,       hex: siDart.hex },
   Flutter:      { path: siFlutter.path,    hex: siFlutter.hex },
@@ -60,5 +66,5 @@ export const skillIconMap: Record<string, { path: string; hex: string; viewBox?:
   Cloudflare:   { path: siCloudflare.path, hex: siCloudflare.hex },
   Vercel:       { path: siVercel.path,     hex: siVercel.hex },
   Postman:      { path: siPostman.path,    hex: siPostman.hex },
-  Unity:        { path: siUnity.path,      hex: siUnity.hex },
+  Unity:        { path: siUnity.path,      hex: "000000" },
 };

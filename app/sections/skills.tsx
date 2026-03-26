@@ -33,15 +33,19 @@ export default function Skills() {
                 className="flex flex-col items-center gap-3 w-[88px] hover:-translate-y-1 transition-transform"
               >
                 {icon ? (
-                  <svg
-                    width={60}
-                    height={60}
-                    viewBox={icon.viewBox ?? "0 0 24 24"}
-                    fill={`#${icon.hex}`}
-                    aria-hidden
-                  >
-                    <path d={icon.path} />
-                  </svg>
+                  "src" in icon ? (
+                    <img src={icon.src} width={60} height={60} alt="" aria-hidden />
+                  ) : (
+                    <svg
+                      width={60}
+                      height={60}
+                      viewBox={icon.viewBox ?? "0 0 24 24"}
+                      fill={`#${icon.hex}`}
+                      aria-hidden
+                    >
+                      <path d={icon.path} />
+                    </svg>
+                  )
                 ) : (
                   <span className="w-[60px] h-[60px] rounded-xl flex items-center justify-center bg-border text-text-secondary text-sm font-bold">
                     {skill.name.slice(0, 2)}
