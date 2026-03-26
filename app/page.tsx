@@ -1,19 +1,21 @@
-import Hero from "@/app/sections/hero";
-import About from "@/app/sections/about";
-import Experience from "@/app/sections/experience";
-import Portfolio from "@/app/sections/portfolio";
-import Skills from "@/app/sections/skills";
-import Contact from "@/app/sections/contact";
+import Hero from "./sections/Hero";
+import About from "./sections/About";
+import Skills from "./sections/Skills";
+import Projects from "./sections/Projects";
+import Experience from "./sections/Experience";
+import Contact from "./sections/Contact";
+import Footer from "./sections/Footer";
 
 export default function Home() {
   return (
-    <>
+    <main>
       <Hero />
       <About />
-      <Experience />
-      <Portfolio />
       <Skills />
+      <Projects />
+      <Experience />
       <Contact />
-    </>
+      <Footer />
+    </main>
   );
 }

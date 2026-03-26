@@ -1,0 +1,127 @@
+"use client";
+
+import { motion } from "framer-motion";
+import { projects } from "../data";
+import type { Project } from "../types";
+import { GitHubIcon } from "../lib/icons";
+import { skillIconMap } from "../lib/skill-icons";
+
+function ProjectCard({ project, index }: { project: Project; index: number }) {
+  return (
+    <motion.article
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-60px" }}
+      transition={{ duration: 0.5, delay: index * 0.08 }}
+      className="bg-white rounded-xl border border-border shadow-sm overflow-hidden flex flex-col sm:flex-row"
+    >
+      {/* Image — left side */}
+      <div className="sm:w-[420px] sm:shrink-0 h-56 sm:h-auto bg-surface border-b sm:border-b-0 sm:border-r border-border flex flex-col items-center justify-center gap-2 text-text-secondary/40 relative">
+        {/* Placeholder — replace the contents of this div with <Image> when ready */}
+        <svg
+          width={40}
+          height={40}
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth={1.2}
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909M3 20.25h18A2.25 2.25 0 0023.25 18V6a2.25 2.25 0 00-2.25-2.25H3A2.25 2.25 0 00.75 6v12A2.25 2.25 0 003 20.25z"
+          />
+        </svg>
+        <span className="text-xs font-medium">Project Image</span>
+      </div>
+
+      {/* Content — right side */}
+      <div className="flex flex-col flex-1 p-6">
+        <h3 className="text-lg font-bold text-primary leading-snug">
+          {project.title}
+        </h3>
+
+        <p className="mt-2 text-sm text-text-secondary leading-relaxed flex-1">
+          {project.description}
+        </p>
+
+        {project.features && project.features.length > 0 && (
+          <ul className="mt-3 space-y-1">
+            {project.features.slice(0, 3).map((f) => (
+              <li key={f} className="flex items-start gap-2 text-xs text-text-secondary">
+                <span className="w-1.5 h-1.5 bg-accent rounded-full mt-1 shrink-0" />
+                {f}
+              </li>
+            ))}
+          </ul>
+        )}
+
+        <div className="mt-4 flex flex-wrap gap-2">
+          {project.techStack.map((tech) => {
+            const icon = skillIconMap[tech];
+            return (
+              <span
+                key={tech}
+                className="inline-flex items-center gap-1.5 text-xs font-medium px-2.5 py-1 bg-surface text-text-secondary rounded-md border border-border"
+              >
+                {icon && (
+                  <svg
+                    width={13}
+                    height={13}
+                    viewBox={icon.viewBox ?? "0 0 24 24"}
+                    fill={`#${icon.hex}`}
+                    className="shrink-0"
+                    aria-hidden
+                  >
+                    <path d={icon.path} />
+                  </svg>
+                )}
+                {tech}
+              </span>
+            );
+          })}
+        </div>
+
+        {project.github && (
+          <div className="mt-5 pt-4 border-t border-border flex justify-end">
+            <a
+              href={project.github}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 px-4 py-2 bg-primary text-white text-sm font-medium rounded-lg hover:bg-primary/90 transition-colors"
+            >
+              <GitHubIcon size={16} />
+              See Project
+            </a>
+          </div>
+        )}
+      </div>
+    </motion.article>
+  );
+}
+
+export default function Projects() {
+  return (
+    <section id="projects" className="py-24 bg-surface px-6">
+      <div className="mx-auto max-w-5xl">
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.6 }}
+        >
+          <h2 className="text-3xl sm:text-4xl font-bold text-primary text-center">
+            Projects
+          </h2>
+          <div className="mt-2 mx-auto w-16 h-1 bg-accent rounded-full" />
+        </motion.div>
+
+        <div className="mt-12 space-y-6">
+          {projects.map((project, i) => (
+            <ProjectCard key={project.id} project={project} index={i} />
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}

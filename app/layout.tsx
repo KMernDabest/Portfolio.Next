@@ -1,105 +1,121 @@
-import type { Metadata, Viewport } from "next";
-import { Inter, JetBrains_Mono } from "next/font/google";
+"use client";
+
 import "./globals.css";
-import Navbar from "@/app/components/layout/Navbar";
-import Footer from "@/app/components/layout/Footer";
-import GlobalStarBackground from "@/app/components/layout/GlobalStarBackground";
+import { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { navLinks } from "./data";
 
-const inter = Inter({
-  variable: "--font-inter",
-  subsets: ["latin"],
-  display: "swap",
-});
+function Navbar() {
+  const [scrolled, setScrolled] = useState(false);
+  const [mobileOpen, setMobileOpen] = useState(false);
 
-const jetbrainsMono = JetBrains_Mono({
-  variable: "--font-jetbrains-mono",
-  subsets: ["latin"],
-  display: "swap",
-});
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 20);
+    window.addEventListener("scroll", onScroll);
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
-export const viewport: Viewport = {
-  themeColor: "#0a0a0a",
-  width: "device-width",
-  initialScale: 1,
-};
+  return (
+    <nav
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        scrolled
+          ? "bg-white/95 backdrop-blur-sm shadow-sm border-b border-border"
+          : "bg-transparent"
+      }`}
+    >
+      <div className="mx-auto max-w-6xl px-6 flex items-center justify-between h-16">
+        <a href="#home" className="text-xl font-bold text-primary tracking-tight">
+          RS<span className="text-accent">.</span>
+        </a>
 
-export const metadata: Metadata = {
-  title: {
-    default: "Rith Seyhak | Software Engineer",
-    template: "%s | Rith Seyhak",
-  },
-  description:
-    "Full-stack software engineer specializing in building exceptional digital experiences. Expert in React, Next.js, Node.js, and modern web technologies.",
-  keywords: [
-    "Software Engineer",
-    "Full Stack Developer",
-    "React",
-    "Next.js",
-    "TypeScript",
-    "Node.js",
-    "Web Developer",
-    "Frontend Developer",
-    "Backend Developer",
-  ],
-  authors: [{ name: "Rith Seyhak" }],
-  creator: "Rith Seyhak",
-  openGraph: {
-    type: "website",
-    locale: "en_US",
-    url: "https://rithseyhak.dev",
-    siteName: "Rith Seyhak Portfolio",
-    title: "Rith Seyhak | Software Engineer",
-    description:
-      "Full-stack software engineer specializing in building exceptional digital experiences.",
-    images: [
-      {
-        url: "/og-image.png",
-        width: 1200,
-        height: 630,
-        alt: "Rith Seyhak - Software Engineer",
-      },
-    ],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Rith Seyhak | Software Engineer",
-    description:
-      "Full-stack software engineer specializing in building exceptional digital experiences.",
-    images: ["/og-image.png"],
-    creator: "@rithseyhak",
-  },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      "max-video-preview": -1,
-      "max-image-preview": "large",
-      "max-snippet": -1,
-    },
-  },
-  icons: {
-    icon: "/favicon.ico",
-    shortcut: "/favicon-16x16.png",
-    apple: "/apple-touch-icon.png",
-  },
-};
+        {/* Desktop nav */}
+        <ul className="hidden md:flex items-center gap-8">
+          {navLinks.map((link) => (
+            <li key={link.href}>
+              <a
+                href={link.href}
+                className="text-sm font-medium text-text-secondary hover:text-accent transition-colors"
+              >
+                {link.label}
+              </a>
+            </li>
+          ))}
+        </ul>
+
+        {/* Mobile hamburger */}
+        <button
+          className="md:hidden flex flex-col gap-1.5 p-2"
+          onClick={() => setMobileOpen(!mobileOpen)}
+          aria-label="Toggle menu"
+        >
+          <span
+            className={`block w-6 h-0.5 bg-text transition-all duration-300 ${
+              mobileOpen ? "rotate-45 translate-y-2" : ""
+            }`}
+          />
+          <span
+            className={`block w-6 h-0.5 bg-text transition-all duration-300 ${
+              mobileOpen ? "opacity-0" : ""
+            }`}
+          />
+          <span
+            className={`block w-6 h-0.5 bg-text transition-all duration-300 ${
+              mobileOpen ? "-rotate-45 -translate-y-2" : ""
+            }`}
+          />
+        </button>
+      </div>
+
+      {/* Mobile menu */}
+      <AnimatePresence>
+        {mobileOpen && (
+          <motion.div
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: "auto" }}
+            exit={{ opacity: 0, height: 0 }}
+            className="md:hidden bg-white border-b border-border overflow-hidden"
+          >
+            <ul className="px-6 py-4 space-y-4">
+              {navLinks.map((link) => (
+                <li key={link.href}>
+                  <a
+                    href={link.href}
+                    onClick={() => setMobileOpen(false)}
+                    className="block text-sm font-medium text-text-secondary hover:text-accent transition-colors"
+                  >
+                    {link.label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </nav>
+  );
+}
 
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>) {
+}) {
   return (
-    <html lang="en" className="scroll-smooth">
-      <body
-        className={`${inter.variable} ${jetbrainsMono.variable} font-sans antialiased text-white`}
-      >
-        <GlobalStarBackground />
+    <html lang="en">
+      <head>
+        <title>Rith Seyhak | Software Engineer</title>
+        <meta
+          name="description"
+          content="Portfolio of Rith Seyhak — aspiring software engineer based in Phnom Penh, Cambodia."
+        />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+          rel="stylesheet"
+        />
+      </head>
+      <body className="bg-white text-text antialiased">
         <Navbar />
-        <main className="relative z-10">{children}</main>
-        <Footer />
+        {children}
       </body>
     </html>
   );
