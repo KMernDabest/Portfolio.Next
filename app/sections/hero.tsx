@@ -41,7 +41,7 @@ export default function Hero() {
           className="mt-4 text-lg sm:text-xl text-text-secondary max-w-xl mx-auto"
         >
           An aspiring software engineer based in Phnom Penh, Cambodia.
-          I build clean, modern web applications.
+          I build clean, modern web and mobile applications.
         </motion.p>
 
         {/* Buttons */}
