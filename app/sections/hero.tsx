@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { GitHubIcon, LinkedInIcon, DownloadIcon, ArrowDownIcon } from "../lib/icons";
+import { GitHubIcon, LinkedInIcon, ArrowDownIcon } from "../lib/icons";
 
 const container = {
   hidden: {},
@@ -17,7 +17,7 @@ export default function Hero() {
   return (
     <section
       id="home"
-      className="min-h-screen flex items-center justify-center bg-white px-6"
+      className="min-h-screen flex items-center justify-center bg-white px-4 sm:px-6"
     >
       <motion.div
         variants={container}
@@ -69,14 +69,6 @@ export default function Hero() {
             LinkedIn
           </a>
 
-          <a
-            href="/resume.pdf"
-            download
-            className="inline-flex items-center gap-2 px-6 py-3 border-2 border-primary text-primary text-sm font-medium rounded-lg hover:bg-primary hover:text-white transition-colors"
-          >
-            <DownloadIcon size={20} />
-            Download Resume
-          </a>
         </motion.div>
 
         {/* Scroll indicator */}

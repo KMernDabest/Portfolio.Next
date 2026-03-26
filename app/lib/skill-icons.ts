@@ -18,6 +18,11 @@ import {
   siDocker,
   siVscodium,
   siFigma,
+  siFirebase,
+  siCloudflare,
+  siVercel,
+  siPostman,
+  siUnity,
 } from "simple-icons";
 
 // Custom SVG paths for icons not available in simple-icons
@@ -51,4 +56,9 @@ export const skillIconMap: Record<string, { path: string; hex: string; viewBox?:
   Docker:       { path: siDocker.path,     hex: siDocker.hex },
   "VS Code":    { path: siVscodium.path,   hex: siVscodium.hex },
   Figma:        { path: siFigma.path,      hex: siFigma.hex },
+  Firebase:     { path: siFirebase.path,   hex: siFirebase.hex },
+  Cloudflare:   { path: siCloudflare.path, hex: siCloudflare.hex },
+  Vercel:       { path: siVercel.path,     hex: siVercel.hex },
+  Postman:      { path: siPostman.path,    hex: siPostman.hex },
+  Unity:        { path: siUnity.path,      hex: siUnity.hex },
 };

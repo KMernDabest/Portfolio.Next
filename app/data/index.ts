@@ -46,11 +46,65 @@ export const skills: Skill[] = [
   // Tools
   { name: "Git", icon: "git", color: "#f05032", category: "tools" },
   { name: "Docker", icon: "docker", color: "#2496ed", category: "tools" },
-
+  { name: "Firebase", icon: "firebase", color: "#ffca28", category: "tools" },
+  { name: "Cloudflare", icon: "cloudflare", color: "#f38020", category: "tools" },
+  { name: "Vercel", icon: "vercel", color: "#000000", category: "tools" },
+  { name: "Postman", icon: "postman", color: "#ff6c37", category: "tools" },
   { name: "Figma", icon: "figma", color: "#f24e1e", category: "tools" },
 ];
 
 export const projects: Project[] = [
+  {
+    id: "modula-pos",
+    title: "Modula POS",
+    summary: "A POS system with pay-as-you-go functionality and unique design.",
+    description:
+      "A modern point-of-sale system featuring a pay-as-you-go pricing model and a uniquely crafted UI. Built to streamline retail operations with an intuitive and visually distinct interface.",
+    features: [
+      "Pay-as-you-go pricing model",
+      "Intuitive sales and checkout flow",
+      "Inventory and product management",
+      "Unique, modern UI design",
+    ],
+    techStack: ["Flutter", "TypeScript", "Express", "PostgreSQL"],
+    image: "/photos/modulapos.png",
+    github: "https://github.com/Zorng/ModulaFrontend.git",
+    featured: true,
+  },
+  {
+    id: "melodia",
+    title: "Melodia",
+    summary: "A Spotify dashboard clone with full music playback functionality.",
+    description:
+      "A full-featured Spotify dashboard clone built with the MERN stack, replicating core Spotify functionalities including music playback, playlists, and a responsive player UI.",
+    features: [
+      "Music playback with player controls",
+      "Playlist creation and management",
+      "Spotify-like dashboard UI",
+      "Full MERN stack implementation",
+    ],
+    techStack: ["MongoDB", "Express", "React", "Node.js"],
+    image: "/photos/spotify-clone.png",
+    github: "https://github.com/KMernDabest/Melodia-Spotify-clone-.git",
+    featured: true,
+  },
+  {
+    id: "frostguard",
+    title: "FrostGuard",
+    summary: "A 3D strategic tower defense game built with Unity and C#.",
+    description:
+      "A 3D tower defense game where players strategically place and upgrade towers to defend against waves of enemies. Built in Unity with C#, featuring immersive environments and engaging gameplay mechanics.",
+    features: [
+      "3D strategic tower placement and upgrades",
+      "Wave-based enemy system",
+      "Immersive 3D environments",
+      "Built with Unity and C#",
+    ],
+    techStack: ["Unity", "C#"],
+    image: "/photos/Frostguard.png",
+    github: "https://github.com/Ra-Fat/Frost-Guard.git",
+    featured: true,
+  },
   {
     id: "portfolio-site",
     title: "Portfolio Website",
@@ -64,7 +118,8 @@ export const projects: Project[] = [
       "Clean, modern UI",
     ],
     techStack: ["Next.js", "TypeScript", "Tailwind CSS", "Framer Motion"],
-    github: "https://github.com/KMernDabest/portfolio",
+    image: "/photos/portfolio.png",
+    github: "https://github.com/KMernDabest/Portfolio.Next.git",
     featured: false,
   },
 ];
@@ -90,13 +145,13 @@ export const experiences: Experience[] = [
 
 export const aboutText = {
   intro:
-    "I'm Rith Seyhak, an aspiring software engineer based in Phnom Penh, Cambodia. I'm passionate about building clean, efficient, and user-friendly web applications.",
+    "I'm Rith Seyhak, an aspiring software engineer based in Phnom Penh, Cambodia. I'm passionate about building clean, efficient, and user-friendly web/mobile applications.",
   detail:
-    "Currently pursuing a degree in Computer Science at the Royal University of Phnom Penh, I spend my time learning new technologies, working on side projects, and contributing to the local tech community. I enjoy turning ideas into reality through code and am always looking for opportunities to grow as a developer.",
+    "Currently pursuing a degree in Computer Science at the Cambodia Academy of Digital Technology, I spend my time learning new technologies and working on side projects. I enjoy turning ideas into reality through code and am always looking for opportunities to grow as a developer.",
   interests: [
     "Full-Stack Web Development",
+    "Mobile Development",
     "UI/UX Design",
-    "Open Source",
     "Problem Solving",
   ],
 };

@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Image from "next/image";
 import { projects } from "../data";
 import type { Project } from "../types";
 import { GitHubIcon } from "../lib/icons";
@@ -13,26 +14,26 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-60px" }}
       transition={{ duration: 0.5, delay: index * 0.08 }}
-      className="bg-white rounded-xl border border-border shadow-sm overflow-hidden flex flex-col sm:flex-row"
+      className="bg-white rounded-xl border border-border shadow-sm overflow-hidden flex flex-col sm:flex-row sm:min-h-[220px]"
     >
       {/* Image — left side */}
-      <div className="sm:w-[420px] sm:shrink-0 h-56 sm:h-auto bg-surface border-b sm:border-b-0 sm:border-r border-border flex flex-col items-center justify-center gap-2 text-text-secondary/40 relative">
-        {/* Placeholder — replace the contents of this div with <Image> when ready */}
-        <svg
-          width={40}
-          height={40}
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth={1.2}
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909M3 20.25h18A2.25 2.25 0 0023.25 18V6a2.25 2.25 0 00-2.25-2.25H3A2.25 2.25 0 00.75 6v12A2.25 2.25 0 003 20.25z"
+      <div className="sm:w-[42%] sm:shrink-0 h-52 sm:h-auto bg-surface border-b sm:border-b-0 sm:border-r border-border relative overflow-hidden">
+        {project.image ? (
+          <Image
+            src={project.image}
+            alt={project.title}
+            fill
+            className="object-cover"
+            sizes="420px"
           />
-        </svg>
-        <span className="text-xs font-medium">Project Image</span>
+        ) : (
+          <div className="absolute inset-0 flex flex-col items-center justify-center gap-2 text-text-secondary/40">
+            <svg width={40} height={40} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.2}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909M3 20.25h18A2.25 2.25 0 0023.25 18V6a2.25 2.25 0 00-2.25-2.25H3A2.25 2.25 0 00.75 6v12A2.25 2.25 0 003 20.25z" />
+            </svg>
+            <span className="text-xs font-medium">Project Image</span>
+          </div>
+        )}
       </div>
 
       {/* Content — right side */}
@@ -44,17 +45,6 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
         <p className="mt-2 text-sm text-text-secondary leading-relaxed flex-1">
           {project.description}
         </p>
-
-        {project.features && project.features.length > 0 && (
-          <ul className="mt-3 space-y-1">
-            {project.features.slice(0, 3).map((f) => (
-              <li key={f} className="flex items-start gap-2 text-xs text-text-secondary">
-                <span className="w-1.5 h-1.5 bg-accent rounded-full mt-1 shrink-0" />
-                {f}
-              </li>
-            ))}
-          </ul>
-        )}
 
         <div className="mt-4 flex flex-wrap gap-2">
           {project.techStack.map((tech) => {
@@ -102,8 +92,8 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
 
 export default function Projects() {
   return (
-    <section id="projects" className="py-24 bg-surface px-6">
-      <div className="mx-auto max-w-5xl">
+    <section id="projects" className="py-24 bg-surface px-4 sm:px-6">
+      <div className="mx-auto max-w-6xl">
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}

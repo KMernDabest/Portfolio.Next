@@ -1,32 +1,40 @@
 "use client";
 
-import { useState, type FormEvent } from "react";
+import { useState } from "react";
 import { motion } from "framer-motion";
+import emailjs from "@emailjs/browser";
 
 export default function Contact() {
   const [form, setForm] = useState({ name: "", email: "", message: "" });
   const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
 
-  function handleSubmit(e: FormEvent) {
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     setStatus("sending");
 
-    const subject = encodeURIComponent(`Portfolio Message from ${form.name}`);
-    const body = encodeURIComponent(
-      `Name: ${form.name}\nEmail: ${form.email}\n\n${form.message}`
-    );
-
-    window.location.href = `mailto:seyhakrithwk@gmail.com?subject=${subject}&body=${body}`;
-
-    setTimeout(() => {
+    try {
+      await emailjs.send(
+        process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID!,
+        process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID!,
+        {
+          from_name: form.name,
+          from_email: form.email,
+          message: form.message,
+        },
+        process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY!,
+      );
       setStatus("sent");
       setForm({ name: "", email: "", message: "" });
       setTimeout(() => setStatus("idle"), 3000);
-    }, 1000);
+    } catch (err) {
+      console.error("EmailJS error:", err);
+      setStatus("error");
+      setTimeout(() => setStatus("idle"), 4000);
+    }
   }
 
   return (
-    <section id="contact" className="py-24 bg-surface px-6">
+    <section id="contact" className="py-24 bg-surface px-4 sm:px-6">
       <div className="mx-auto max-w-2xl">
         <motion.div
           initial={{ opacity: 0, y: 40 }}
@@ -105,11 +113,15 @@ export default function Contact() {
               />
             </div>
 
-            <div className="text-center">
+            <div className="text-center space-y-3">
               <button
                 type="submit"
-                disabled={status === "sending"}
-                className="inline-flex items-center gap-2 px-8 py-3.5 bg-accent text-white font-medium rounded-lg hover:bg-accent-hover disabled:opacity-60 transition-colors"
+                disabled={status === "sending" || status === "sent"}
+                className={`inline-flex items-center gap-2 px-8 py-3.5 font-medium rounded-lg transition-colors disabled:opacity-60 ${
+                  status === "error"
+                    ? "bg-red-500 text-white hover:bg-red-600"
+                    : "bg-accent text-white hover:bg-accent-hover"
+                }`}
               >
                 {status === "sending" ? (
                   "Sending..."
@@ -120,6 +132,13 @@ export default function Contact() {
                     </svg>
                     Message Sent!
                   </>
+                ) : status === "error" ? (
+                  <>
+                    <svg width={20} height={20} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2}>
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z" />
+                    </svg>
+                    Failed — Try Again
+                  </>
                 ) : (
                   <>
                     <svg width={20} height={20} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2}>
@@ -129,6 +148,11 @@ export default function Contact() {
                   </>
                 )}
               </button>
+              {status === "error" && (
+                <p className="text-sm text-red-500">
+                  Something went wrong. Check the browser console for details.
+                </p>
+              )}
             </div>
           </form>
         </motion.div>
