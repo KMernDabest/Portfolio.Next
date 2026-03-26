@@ -130,14 +130,14 @@ export const experiences: Experience[] = [
   {
     id: "cadt",
     type: "education",
-    role: "Bachelor of Information and Communication Engineering",
+    role: "Bachelor of Computer Science in Software Engineering",
     company: "Cambodia Academy of Digital Technology",
     location: "Phnom Penh, Cambodia",
     duration: "2023 - Present",
     startDate: "2023-10",
     endDate: "Present",
     description:
-      "Studying Information and Communication Engineering at CADT with a strong focus on modern software development, cloud technologies, and data science.",
+      "Studying Software Engineering at CADT with a strong focus on modern software development, cloud technologies, and data science.",
     highlights: [
       "Relevant coursework: Web Development, Mobile Development, Cloud Computing, Fundamentals of Data Science",
       "Completed Capstone project",
