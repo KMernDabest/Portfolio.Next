@@ -1,8 +1,32 @@
 "use client";
 
 import "./globals.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+
+function useActiveSection() {
+  const [active, setActive] = useState("home");
+
+  useEffect(() => {
+    const ids = navItems.map((i) => i.href.slice(1));
+    const observers: IntersectionObserver[] = [];
+
+    ids.forEach((id) => {
+      const el = document.getElementById(id);
+      if (!el) return;
+      const observer = new IntersectionObserver(
+        ([entry]) => { if (entry.isIntersecting) setActive(id); },
+        { rootMargin: "-40% 0px -55% 0px", threshold: 0 }
+      );
+      observer.observe(el);
+      observers.push(observer);
+    });
+
+    return () => observers.forEach((o) => o.disconnect());
+  }, []);
+
+  return active;
+}
 
 const navItems = [
   {
@@ -63,6 +87,7 @@ const navItems = [
 
 function SideNav() {
   const [expanded, setExpanded] = useState(false);
+  const active = useActiveSection();
 
   return (
     <motion.nav
@@ -100,11 +125,17 @@ function SideNav() {
       <div className="w-full h-px bg-border mx-0 my-1" />
 
       {/* Nav items */}
-      {navItems.map((item) => (
+      {navItems.map((item) => {
+        const isActive = active === item.href.slice(1);
+        return (
         <div key={item.href} className="relative group/item">
           <a
             href={item.href}
-            className="flex items-center justify-center gap-3 py-3 mx-1.5 rounded-xl text-text-secondary hover:text-accent hover:bg-surface transition-colors"
+            className={`flex items-center justify-center gap-3 py-3 mx-1.5 rounded-xl transition-colors ${
+              isActive
+                ? "text-accent bg-surface"
+                : "text-text-secondary hover:text-accent hover:bg-surface"
+            }`}
           >
             <span className="shrink-0">{item.icon}</span>
             <AnimatePresence>
@@ -129,7 +160,8 @@ function SideNav() {
             </div>
           )}
         </div>
-      ))}
+        );
+      })}
     </motion.nav>
   );
 }
@@ -158,6 +190,7 @@ function Header() {
 
 function MobileNav() {
   const [open, setOpen] = useState(false);
+  const active = useActiveSection();
 
   return (
     <>
@@ -184,17 +217,24 @@ function MobileNav() {
       >
         {/* Nav panel */}
         <nav className="w-40 bg-white border border-border rounded-r-2xl shadow-xl py-4 flex flex-col gap-1">
-          {navItems.map((navItem) => (
-            <a
-              key={navItem.href}
-              href={navItem.href}
-              onClick={() => setOpen(false)}
-              className="flex items-center gap-3 px-4 py-3 text-text-secondary hover:text-accent hover:bg-surface transition-colors"
-            >
-              <span className="shrink-0">{navItem.icon}</span>
-              <span className="text-sm font-medium">{navItem.label}</span>
-            </a>
-          ))}
+          {navItems.map((navItem) => {
+            const isActive = active === navItem.href.slice(1);
+            return (
+              <a
+                key={navItem.href}
+                href={navItem.href}
+                onClick={() => setOpen(false)}
+                className={`flex items-center gap-3 px-4 py-3 transition-colors ${
+                  isActive
+                    ? "text-accent bg-surface"
+                    : "text-text-secondary hover:text-accent hover:bg-surface"
+                }`}
+              >
+                <span className="shrink-0">{navItem.icon}</span>
+                <span className="text-sm font-medium">{navItem.label}</span>
+              </a>
+            );
+          })}
         </nav>
 
         {/* Half-circle tab */}
