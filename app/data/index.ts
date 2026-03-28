@@ -107,23 +107,6 @@ export const projects: Project[] = [
     github: "https://github.com/Ra-Fat/Frost-Guard.git",
     featured: true,
   },
-  {
-    id: "portfolio-site",
-    title: "Portfolio Website",
-    summary: "This personal portfolio website built with Next.js and Framer Motion.",
-    description:
-      "Designed and developed this portfolio site to showcase my projects and skills, featuring smooth animations and a clean, modern design.",
-    features: [
-      "Smooth scroll animations",
-      "Responsive design",
-      "Optimized performance",
-      "Clean, modern UI",
-    ],
-    techStack: ["Next.js", "TypeScript", "Tailwind CSS", "Framer Motion"],
-    image: "/photos/portfolio.png",
-    github: "https://github.com/KMernDabest/Portfolio.Next.git",
-    featured: false,
-  },
 ];
 
 export const experiences: Experience[] = [
@@ -142,6 +125,20 @@ export const experiences: Experience[] = [
       "Relevant coursework: Web Development, Mobile Development, Cloud Computing, Fundamentals of Data Science",
       "Completed Capstone project",
     ],
+  },
+  {
+    id: "stem-festival",
+    type: "volunteer",
+    role: "Transportation Assistance",
+    company: "Annual STEM Festival",
+    location: "Phnom Penh, Cambodia",
+    duration: "2025",
+    startDate: "2025",
+    endDate: "2025",
+    description:
+      "Volunteered as transportation assistance at the Annual STEM Festival, helping coordinate and support the logistics of the event.",
+    certificate: "/photos/STEM Certificate.png",
+    logo: "/photos/STEM logo.png",
   },
 ];
 

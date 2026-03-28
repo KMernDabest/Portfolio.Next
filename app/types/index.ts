@@ -18,7 +18,7 @@ export interface Project {
 
 export interface Experience {
   id: string;
-  type: "work" | "education";
+  type: "work" | "education" | "volunteer";
   role: string;
   company: string;
   location?: string;
@@ -27,6 +27,8 @@ export interface Experience {
   endDate: string;
   description: string;
   highlights?: string[];
+  certificate?: string;
+  logo?: string;
 }
 
 export interface Skill {
