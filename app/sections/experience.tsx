@@ -4,7 +4,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 import { useState } from "react";
 import { experiences } from "../data";
-import { Experience } from "../types";
+import type { Experience } from "../types";
 
 const sectionLabels: Record<string, string> = {
   education: "Education",
