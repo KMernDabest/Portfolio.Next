@@ -91,7 +91,7 @@ function SideNav() {
 
   return (
     <motion.nav
-      animate={{ width: expanded ? 160 : 64 }}
+      animate={{ width: expanded ? 180 : 64 }}
       transition={{ type: "spring", stiffness: 300, damping: 30 }}
       className="fixed left-5 top-1/2 -translate-y-1/2 z-50 bg-white border-2 border-border rounded-2xl shadow-xl flex flex-col items-stretch py-4 gap-1 hidden md:flex"
     >
@@ -99,10 +99,10 @@ function SideNav() {
       <button
         type="button"
         onClick={() => setExpanded(!expanded)}
-        className="flex items-center justify-center gap-3 py-3 mx-1.5 rounded-xl text-text-secondary hover:text-accent hover:bg-surface transition-colors"
+        className="flex items-center gap-3 py-3 mx-1.5 rounded-xl text-text-secondary hover:text-accent hover:bg-surface transition-colors"
         aria-label="Toggle navigation"
       >
-        <span className="shrink-0">
+        <span className="shrink-0 w-[48px] flex items-center justify-center">
           <svg width={22} height={22} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2}>
             <path strokeLinecap="round" strokeLinejoin="round" d={expanded ? "M6 18L18 6M6 6l12 12" : "M3.75 6.75h16.5M3.75 12h16.5M3.75 17.25h16.5"} />
           </svg>
@@ -131,13 +131,13 @@ function SideNav() {
         <div key={item.href} className="relative group/item">
           <a
             href={item.href}
-            className={`flex items-center justify-center gap-3 py-3 mx-1.5 rounded-xl transition-colors ${
+            className={`flex items-center gap-3 py-3 mx-1.5 rounded-xl transition-colors ${
               isActive
                 ? "text-accent bg-surface"
                 : "text-text-secondary hover:text-accent hover:bg-surface"
             }`}
           >
-            <span className="shrink-0">{item.icon}</span>
+            <span className="shrink-0 w-[48px] flex items-center justify-center">{item.icon}</span>
             <AnimatePresence>
               {expanded && (
                 <motion.span
