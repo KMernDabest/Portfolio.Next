@@ -23,6 +23,7 @@ import {
   siVercel,
   siPostman,
   siUnity,
+  siCplusplus,
 } from "simple-icons";
 
 export type SkillIcon =
@@ -66,5 +67,7 @@ export const skillIconMap: Record<string, SkillIcon> = {
   Cloudflare:   { path: siCloudflare.path, hex: siCloudflare.hex },
   Vercel:       { path: siVercel.path,     hex: siVercel.hex },
   Postman:      { path: siPostman.path,    hex: siPostman.hex },
+  "C++":        { path: siCplusplus.path,  hex: siCplusplus.hex },
+  C:            { src: "/c-program-icon.svg" },
   Unity:        { path: siUnity.path,      hex: "000000" },
 };

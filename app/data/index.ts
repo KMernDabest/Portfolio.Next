@@ -39,6 +39,8 @@ export const skills: Skill[] = [
   { name: "Express", icon: "express", color: "#000000", category: "backend" },
   { name: "Python", icon: "python", color: "#3776ab", category: "backend" },
   { name: "Java", icon: "java", color: "#ed8b00", category: "backend" },
+  { name: "C++", icon: "cplusplus", color: "#00599C", category: "backend" },
+  { name: "C", icon: "c", color: "#A8B9CC", category: "backend" },
   // Database
   { name: "MongoDB", icon: "mongodb", color: "#47a248", category: "database" },
   { name: "PostgreSQL", icon: "postgresql", color: "#4169e1", category: "database" },
